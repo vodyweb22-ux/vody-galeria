@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Todas las fotos de VODY EVENTS x The Panto's Vol. 2 — Playa de San Juan. Busca la tuya y descárgala gratis.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VODY x The Panto's · Vol. 2 — La galería">
+<meta property="og:description" content="22 fotos de la noche. Búscate, descárgala y etiquétanos.">
+<!-- IMPORTANTE: cuando tengas el dominio de Vercel, cambia esta linea por la URL completa,
+     por ejemplo: https://vody-galeria.vercel.app/portada.jpg -->
+<meta property="og:image" content="portada.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#04323c">
+<link rel="icon" href="logo-vody.png">
+<title>VODY x The Panto's · Vol. 2 — Galería</title>
+<style>
+:root{
+  --cyan:#3fd8e8; --deep:#04323c; --ink:#08222a; --red:#ff3b5c;
+  --glass:rgba(255,255,255,.16); --glass-b:rgba(255,255,255,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--deep);color:#fff;overflow-x:hidden}
+img{display:block;max-width:100%}
+button,a.btn{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(4,50,60,.72);border-bottom:1px solid rgba(255,255,255,.09)}
+.nav .in{max-width:1280px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:9px;flex:1;min-width:0}
+.logo-img{height:30px;width:auto}
+@media(min-width:620px){.logo-img{height:34px}}
+.logo .x{opacity:.5;font-size:13px}
+.logo .p{font-size:13px;font-weight:700;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav .cta{background:var(--cyan);color:var(--ink);font-weight:800;font-size:12px;letter-spacing:.4px;
+  padding:9px 15px;border-radius:999px;white-space:nowrap}
+.nav .cta:active{transform:scale(.96)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:min(76vh,600px);display:flex;flex-direction:column;justify-content:center;
+  align-items:center;text-align:center;padding:54px 20px 46px;overflow:hidden}
+.hero .bg{position:absolute;inset:0;background:
+  radial-gradient(120% 85% at 50% 0%, #7fe9f2 0%, #33c9dd 34%, #0f8ea3 62%, #04323c 100%)}
+.hero .sea{position:absolute;left:0;right:0;bottom:0;height:42%;
+  background:linear-gradient(180deg,rgba(4,50,60,0) 0%, rgba(4,50,60,.55) 55%, var(--deep) 100%)}
+.hero .grain{position:absolute;inset:0;opacity:.16;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px)}
+.palm{position:absolute;top:-30px;width:340px;opacity:.85;pointer-events:none}
+.palm.l{left:-90px;transform:rotate(-8deg)}
+.palm.r{right:-90px;transform:scaleX(-1) rotate(-8deg)}
+.hero .inner{position:relative;z-index:2;width:100%;max-width:760px}
+.kicker{display:inline-block;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;padding:6px 16px;font-size:11px;font-weight:800;letter-spacing:3px;margin-bottom:18px}
+.hero-logo{width:min(430px,74vw);margin:0 auto;filter:drop-shadow(0 8px 30px rgba(0,35,45,.5))}
+.hero h1{font-size:clamp(38px,10.5vw,86px);font-weight:900;line-height:.92;letter-spacing:-1.5px;
+  text-shadow:0 6px 30px rgba(0,40,50,.45)}
+.cross{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px;
+  font-size:clamp(19px,5vw,30px);font-weight:900;letter-spacing:-.3px;text-shadow:0 4px 20px rgba(0,40,50,.45)}
+.cross i{font-style:italic;font-weight:300;opacity:.8;font-size:1.15em}
+.vol{display:block;font-size:clamp(11px,2.6vw,14px);letter-spacing:6px;font-weight:800;margin-top:14px;opacity:.9}
+.hero h1 .vol{display:block;font-size:.34em;letter-spacing:6px;font-weight:800;margin-top:12px;opacity:.95}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}
+.pill{background:var(--glass);border:1px solid var(--glass-b);backdrop-filter:blur(8px);
+  border-radius:999px;padding:8px 16px;font-size:12px;font-weight:700;letter-spacing:.6px}
+.scroll{position:relative;z-index:2;margin-top:32px;font-size:11px;letter-spacing:2px;opacity:.75;
+  animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ---------- GALERÍA ---------- */
+.sec{max-width:1280px;margin:0 auto;padding:34px 16px 0}
+.sec-h{margin-bottom:20px}
+.sec-h h2{font-size:clamp(24px,5.5vw,38px);font-weight:900;letter-spacing:-.6px}
+.sec-h h2 em{font-style:normal;color:var(--cyan)}
+.sec-h p{font-size:13.5px;opacity:.6;margin-top:6px;line-height:1.5}
+
+.grid{columns:2;column-gap:10px}
+@media(min-width:620px){.grid{columns:3}}
+@media(min-width:980px){.grid{columns:4;column-gap:12px}}
+.card{break-inside:avoid;margin-bottom:10px;position:relative;border-radius:12px;overflow:hidden;
+  cursor:zoom-in;background:#0a3c47;animation:fade .45s both}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card img{width:100%;height:auto;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card:hover img{transform:scale(1.06)}
+.card .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.65));
+  opacity:0;transition:.25s}
+.card:hover .ov{opacity:1}
+.card .fav{position:absolute;top:8px;right:8px;width:31px;height:31px;border-radius:50%;
+  background:rgba(0,0,0,.42);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;
+  font-size:14px;opacity:0;transition:.2s}
+.card:hover .fav,.card .fav.on{opacity:1}
+.card .fav.on{background:var(--red)}
+.more{display:block;margin:26px auto 0;border:1.5px solid rgba(255,255,255,.3);border-radius:999px;
+  padding:13px 34px;font-size:13px;font-weight:800;letter-spacing:1.2px;transition:.2s}
+.more:hover{background:#fff;color:var(--ink);border-color:#fff}
+
+/* ---------- FOOTER ---------- */
+footer{margin-top:60px;background:#021d24;padding:44px 16px 34px;text-align:center}
+.f-in{max-width:640px;margin:0 auto}
+footer h4{font-size:19px;font-weight:900;margin-bottom:8px}
+footer p{font-size:13px;opacity:.6;line-height:1.55;margin-bottom:20px}
+.f-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.fb{border:1.5px solid rgba(255,255,255,.25);border-radius:999px;padding:11px 22px;font-size:12.5px;
+  font-weight:800;letter-spacing:.5px;transition:.2s;text-decoration:none;color:#fff}
+.fb:hover{background:#fff;color:var(--ink);border-color:#fff}
+.fb.wa{background:#25d366;border-color:#25d366;color:#04323c}
+.f-legal{margin-top:26px;font-size:10.5px;opacity:.35;letter-spacing:.4px;line-height:1.6}
+
+/* ---------- LIGHTBOX ---------- */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(2,20,25,.96);backdrop-filter:blur(10px);
+  display:none;align-items:center;justify-content:center;padding:20px}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:78vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb .x,.lb .ar{position:absolute;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s}
+.lb .x{top:18px;right:18px;width:42px;height:42px;font-size:20px}
+.lb .ar{top:50%;transform:translateY(-50%);width:46px;height:46px;font-size:22px}
+.lb .ar.p{left:14px}.lb .ar.n{right:14px}
+.lb .x:hover,.lb .ar:hover{background:var(--cyan);color:var(--ink)}
+.lb .bar{position:absolute;bottom:22px;left:0;right:0;display:flex;gap:12px;justify-content:center;align-items:center}
+.lb .bar .dl{background:var(--cyan);color:var(--ink);font-weight:900;font-size:12.5px;padding:11px 22px;border-radius:999px;text-decoration:none;display:inline-block}
+.lb .bar .dl:hover{background:#fff}
+.lb .bar .cnt{font-size:12px;opacity:.5;letter-spacing:1px}
+
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav"><div class="in">
+  <div class="logo">
+    <img class="logo-img" src="logo-vody.png" alt="VODY EVENTS">
+    <span class="x">×</span>
+    <span class="p">THE PANTO'S</span>
+  </div>
+  <button class="cta" onclick="document.getElementById('galeria').scrollIntoView()">Ver fotos</button>
+</div></nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="bg"></div>
+  <svg class="palm l" viewBox="0 0 200 200"><path fill="rgba(3,60,55,.55)" d="M100 10c-30 0-55 22-60 45 12-16 30-24 48-22-22 8-38 28-42 52 10-20 27-33 46-36-18 16-27 40-25 64 6-24 20-43 39-52-10 22-11 47-3 70 0-26 8-50 24-68 4 24-1 48-13 68 16-18 26-41 27-65 12 18 17 40 14 61 6-24 3-49-8-70 20 10 35 29 40 52-2-25-16-47-37-60 21-2 41 6 55 22-9-25-33-43-60-45-9-9-22-14-35-16z"/></svg>
+  <svg class="palm r" viewBox="0 0 200 200"><path fill="rgba(3,60,55,.55)" d="M100 10c-30 0-55 22-60 45 12-16 30-24 48-22-22 8-38 28-42 52 10-20 27-33 46-36-18 16-27 40-25 64 6-24 20-43 39-52-10 22-11 47-3 70 0-26 8-50 24-68 4 24-1 48-13 68 16-18 26-41 27-65 12 18 17 40 14 61 6-24 3-49-8-70 20 10 35 29 40 52-2-25-16-47-37-60 21-2 41 6 55 22-9-25-33-43-60-45-9-9-22-14-35-16z"/></svg>
+  <div class="sea"></div><div class="grain"></div>
+  <div class="inner">
+    <span class="kicker">JUE 13 · 08 · PLAYA DE SAN JUAN</span>
+    <img class="hero-logo" src="logo-vody.png" alt="VODY EVENTS">
+    <div class="cross"><i>×</i> THE PANTO'S</div>
+    <span class="vol">VOL. 2 — LA GALERÍA</span>
+    <div class="pills">
+      <span class="pill">22 fotos</span>
+      <span class="pill">Descarga gratis</span>
+      <span class="pill">Etiquétanos al subirla</span>
+    </div>
+  </div>
+  <div class="scroll">↓ DESLIZA</div>
+</header>
+
+<!-- GALERÍA -->
+<section class="sec" id="galeria">
+  <div class="sec-h">
+    <h2>La noche <em>entera</em></h2>
+    <p>Busca tu foto, descárgala y etiquétanos cuando la subas.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+  <button class="more" id="more">CARGAR MÁS</button>
+</section>
+
+<footer>
+  <div class="f-in">
+    <h4>Vol. 3 ya está en marcha</h4>
+    <p>Las fotos y la fecha del próximo caen primero en el canal de WhatsApp. Después, en Instagram.</p>
+    <div class="f-btns">
+      <a class="fb wa" href="#">CANAL DE WHATSAPP</a>
+      <a class="fb" href="https://www.instagram.com/vody.events/" target="_blank" rel="noopener">@VODY.EVENTS</a>
+      <a class="fb" href="https://www.instagram.com/the.pantos/" target="_blank" rel="noopener">@THE.PANTOS</a>
+    </div>
+    <div class="f-legal">
+      VODY EVENTS × THE PANTO'S · Playa de San Juan, Alicante<br>
+      Si sales en una foto y no quieres aparecer, escríbenos y la quitamos en 24h.
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <button class="x" onclick="closeLb()">✕</button>
+  <button class="ar p" onclick="nav(-1)">‹</button>
+  <button class="ar n" onclick="nav(1)">›</button>
+  <img id="lbImg" alt="">
+  <div class="bar">
+    <span class="cnt" id="lbCnt"></span>
+    <a class="dl" id="lbDl" download="vody-vol2.jpg" href="#">↓ DESCARGAR</a>
+  </div>
+</div>
+
+
+<script>
+/* ============================================================
+   FOTOS · VODY x THE PANTO'S VOL.2
+   15 fotos incrustadas (1400px, listas para descargar).
+   Para añadir mas: mete otra entrada en el array PHOTOS.
+   ============================================================ */
+const PHOTOS = ["fotos/vody-vol2-01.jpg", "fotos/vody-vol2-02.jpg", "fotos/vody-vol2-03.jpg", "fotos/vody-vol2-04.jpg", "fotos/vody-vol2-05.jpg", "fotos/vody-vol2-06.jpg", "fotos/vody-vol2-07.jpg", "fotos/vody-vol2-08.jpg", "fotos/vody-vol2-09.jpg", "fotos/vody-vol2-10.jpg", "fotos/vody-vol2-11.jpg", "fotos/vody-vol2-12.jpg", "fotos/vody-vol2-13.jpg", "fotos/vody-vol2-14.jpg", "fotos/vody-vol2-15.jpg", "fotos/vody-vol2-16.jpg", "fotos/vody-vol2-17.jpg", "fotos/vody-vol2-18.jpg", "fotos/vody-vol2-19.jpg", "fotos/vody-vol2-20.jpg", "fotos/vody-vol2-21.jpg", "fotos/vody-vol2-22.jpg"];
+const THUMBS = ["thumbs/vody-vol2-01.jpg", "thumbs/vody-vol2-02.jpg", "thumbs/vody-vol2-03.jpg", "thumbs/vody-vol2-04.jpg", "thumbs/vody-vol2-05.jpg", "thumbs/vody-vol2-06.jpg", "thumbs/vody-vol2-07.jpg", "thumbs/vody-vol2-08.jpg", "thumbs/vody-vol2-09.jpg", "thumbs/vody-vol2-10.jpg", "thumbs/vody-vol2-11.jpg", "thumbs/vody-vol2-12.jpg", "thumbs/vody-vol2-13.jpg", "thumbs/vody-vol2-14.jpg", "thumbs/vody-vol2-15.jpg", "thumbs/vody-vol2-16.jpg", "thumbs/vody-vol2-17.jpg", "thumbs/vody-vol2-18.jpg", "thumbs/vody-vol2-19.jpg", "thumbs/vody-vol2-20.jpg", "thumbs/vody-vol2-21.jpg", "thumbs/vody-vol2-22.jpg"];
+/* ---------- RENDER ---------- */
+let shown=24; const favs=new Set();
+const grid=document.getElementById('grid');
+function render(){
+  grid.innerHTML=PHOTOS.slice(0,shown).map((src,i)=>`
+    <div class="card" style="animation-delay:${Math.min(i,12)*.03}s" onclick="openLb(${i})">
+      <button class="fav ${favs.has(i)?'on':''}" onclick="event.stopPropagation();fav(${i})">♥</button>
+      <img src="${THUMBS[i]}" loading="lazy" decoding="async" alt="Foto ${i+1}">
+      <div class="ov"></div>
+    </div>`).join('');
+  document.getElementById('more').style.display = shown>=PHOTOS.length?'none':'block';
+}
+function fav(i){favs.has(i)?favs.delete(i):favs.add(i);render()}
+document.getElementById('more').onclick=()=>{shown+=12;render()};
+
+/* ---------- LIGHTBOX ---------- */
+let cur=0;
+function openLb(i){cur=i;paint();document.getElementById('lb').classList.add('on');document.body.style.overflow='hidden'}
+function closeLb(){document.getElementById('lb').classList.remove('on');document.body.style.overflow=''}
+function nav(d){cur=(cur+d+PHOTOS.length)%PHOTOS.length;paint()}
+function paint(){
+  document.getElementById('lbImg').src=PHOTOS[cur];
+  const dl=document.getElementById('lbDl');
+  dl.href=PHOTOS[cur];
+  dl.download='vody-vol2-'+String(cur+1).padStart(2,'0')+'.jpg';
+  document.getElementById('lbCnt').textContent=`${cur+1} / ${PHOTOS.length}`;
+}
+document.getElementById('lb').onclick=e=>{if(e.target.id==='lb')closeLb()};
+document.onkeydown=e=>{
+  if(!document.getElementById('lb').classList.contains('on'))return;
+  if(e.key==='Escape')closeLb(); if(e.key==='ArrowLeft')nav(-1); if(e.key==='ArrowRight')nav(1);
+};
+let tx=0;
+document.getElementById('lb').addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+document.getElementById('lb').addEventListener('touchend',e=>{
+  const d=e.changedTouches[0].clientX-tx; if(Math.abs(d)>50)nav(d>0?-1:1);
+});
+
+render();
+</script>
+</body>
+</html>
