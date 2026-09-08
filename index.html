@@ -124,6 +124,32 @@ footer p{font-size:13px;opacity:.6;line-height:1.55;margin-bottom:20px}
 .lb .bar .cnt{font-size:12px;opacity:.5;letter-spacing:1px}
 
 
+
+/* ---------- MARCA DE AGUA (overlay, no toca los archivos originales) ---------- */
+.card::after,
+.lb-fig::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  background:url("logo-vody.png") no-repeat center center;
+  background-size:contain;          /* nunca deforma ni recorta */
+  aspect-ratio:810/289;             /* proporcion exacta del logo */
+  opacity:.42;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.55));
+  left:50%;                         /* centrado horizontal */
+  transform:translateX(-50%);
+}
+/* Miniaturas: escala relativa al ancho de la tarjeta (igual en toda la retícula) */
+.card::after{width:clamp(56px,38%,124px);bottom:6px}
+@media(min-width:620px){.card::after{bottom:8px}}
+@media(min-width:980px){.card::after{bottom:10px}}
+
+/* Lightbox: contenedor que se ajusta exacto a la foto ampliada */
+.lb-fig{position:relative;display:inline-block;font-size:0;line-height:0;max-width:100%}
+/* min(26%,16vh) => misma escala visual en vertical, horizontal y cuadrada */
+.lb-fig::after{width:clamp(70px,min(26%,16vh),180px);bottom:10px}
+@media(min-width:620px){.lb-fig::after{bottom:14px}}
+
 </style>
 </head>
 <body>
@@ -189,7 +215,7 @@ footer p{font-size:13px;opacity:.6;line-height:1.55;margin-bottom:20px}
   <button class="x" onclick="closeLb()">✕</button>
   <button class="ar p" onclick="nav(-1)">‹</button>
   <button class="ar n" onclick="nav(1)">›</button>
-  <img id="lbImg" alt="">
+  <div class="lb-fig"><img id="lbImg" alt=""></div>
   <div class="bar">
     <span class="cnt" id="lbCnt"></span>
     <a class="dl" id="lbDl" download="vody-vol2.jpg" href="#">↓ DESCARGAR</a>
@@ -232,7 +258,7 @@ function paint(){
   dl.download='vody-vol2-'+String(cur+1).padStart(2,'0')+'.jpg';
   document.getElementById('lbCnt').textContent=`${cur+1} / ${PHOTOS.length}`;
 }
-document.getElementById('lb').onclick=e=>{if(e.target.id==='lb')closeLb()};
+document.getElementById('lb').onclick=e=>{if(e.target.id==='lb'||e.target.classList.contains('lb-fig'))closeLb()};
 document.onkeydown=e=>{
   if(!document.getElementById('lb').classList.contains('on'))return;
   if(e.key==='Escape')closeLb(); if(e.key==='ArrowLeft')nav(-1); if(e.key==='ArrowRight')nav(1);
@@ -244,6 +270,41 @@ document.getElementById('lb').addEventListener('touchend',e=>{
 });
 
 render();
+
+/* ============================================================
+   DESCARGA CON MARCA DE AGUA INTEGRADA
+   Compone foto + logo en un canvas a resolucion nativa y descarga
+   esa copia. Los archivos originales de /fotos NO se tocan.
+   ============================================================ */
+const WM_SRC='logo-vody.png', WM_RATIO=810/289, WM_OPACITY=.42;
+/* Mismas proporciones que el overlay CSS del lightbox:
+   ancho = min(26% del ancho, 16vh) con la foto mostrada a 78vh  ->  .2051*alto */
+const WM_W_PCT=.26, WM_H_FACTOR=.2051, WM_MARGIN=.09;
+function loadImg(src){return new Promise((ok,ko)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=ko;i.src=src;});}
+let dling=false;
+document.getElementById('lbDl').addEventListener('click',async e=>{
+  e.preventDefault();
+  if(dling)return; dling=true;
+  const src=PHOTOS[cur], name=e.currentTarget.download;
+  try{
+    const [ph,lg]=await Promise.all([loadImg(src),loadImg(WM_SRC)]);
+    const W=ph.naturalWidth,H=ph.naturalHeight;
+    const c=document.createElement('canvas');c.width=W;c.height=H;
+    const x=c.getContext('2d');
+    x.imageSmoothingQuality='high';
+    x.drawImage(ph,0,0,W,H);
+    const wmW=Math.min(WM_W_PCT*W,WM_H_FACTOR*H), wmH=wmW/WM_RATIO, m=wmW*WM_MARGIN;
+    x.globalAlpha=WM_OPACITY;
+    x.shadowColor='rgba(0,0,0,.55)'; x.shadowBlur=wmW*.018; x.shadowOffsetY=wmW*.008;
+    x.drawImage(lg,(W-wmW)/2,H-wmH-m,wmW,wmH);
+    const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',.95));
+    const url=URL.createObjectURL(blob);
+    const t=document.createElement('a'); t.href=url; t.download=name;
+    document.body.appendChild(t); t.click(); t.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),5000);
+  }catch(err){ window.open(src,'_blank'); }
+  finally{ dling=false; }
+});
 </script>
 </body>
 </html>
